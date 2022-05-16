@@ -3,10 +3,10 @@
 
 cd /path/to/web
 
-python3 -m venv venv
+python3 -m venv .venv
 
 source venv/bin/activate #mac
-.\venv\Scripts\activate #windows
+.\.venv\Scripts\activate #windows
 .\venv\Scripts\deactivate #windows
 
 pip install --upgrade pip 
