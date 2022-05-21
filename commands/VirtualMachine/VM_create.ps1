@@ -1,5 +1,32 @@
+"###############################################################"
+"Now running : " + $MyInvocation.MyCommand.Path
+"###############################################################"
+
+
+
 ################################################################
-# CREATE A VM :
+"VM :"
+
+$Global:VMName = "flask-linux-vm"
+"VM name : " + $VMName
+
+$Global:ImageName = "UbuntuLTS"
+"Image name : " + $ImageName
+
+$Global:Size = "Standard_B1s"
+"Size : " + $Size
+
+$Global:AdminUsername = "alexadmin"
+"Admin user name : " + $AdminUsername
+
+$Global:Port = "80"
+"Port : " + $Port
+
+$Global:storageSku = "Standard_HDD"
+"storageSku : "  + $storageSku
+
+################################################################
+"CREATE A VM :"
 
 az vm create `
    --resource-group $RGName `
@@ -23,7 +50,7 @@ az vm open-port `
 
 
 ################################################################
-# GET KEYS :
+"GET KEYS :"
 
 # Get IP address
 $file = '.\commands\VirtualMachine\ip.json'

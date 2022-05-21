@@ -3,6 +3,40 @@
 "###############################################################"
 
 
+
+################################################################
+"Cosmos database configuration :"
+
+$Global:CDBName = "alexeicosmos"
+"Cosmos database  : "  + $CDBName
+
+$Global:CDBServerVersion = "4.0"
+"Server Version  : "  + $CDBServerVersion
+
+# Needs to be lower case
+$Global:CDBDatabaseAccount = "alexeidatabaseaccount"
+"CosmosDB Database Account : "  + $CDBDatabaseAccount
+
+#GlobalDocumentDB, MongoDB, Parse
+$Global:CDBKind = "MongoDB"
+"Kind : "  + $CDBKind
+
+$Global:CDBMaxThroughput = 4000
+"Max Throughput : "  + $CDBMaxThroughput
+
+$Global:CDBThroughput = 400
+"Throughput : "  + $CDBThroughput
+
+$Global:CDBCollectionName = 'myfirstcollection'
+"Collection Name : "  + $CDBCollectionName
+
+$Global:CDBDefaultConsistencyLevel = 'Eventual'
+"Default consistency level : "  + $CDBDefaultConsistencyLevel
+
+$Global:CDBenableAutomaticFailover = 'false'
+"Enable automatic failover : "  + $CDBenableAutomaticFailover
+
+
 ################################################################
 "CREATE A COSMOS DATABASE ACCOUNT :"
 

@@ -1,19 +1,14 @@
 ###############################################################################################################
-# Run from within the existing Function App project directory.
-# Creates a Dockerfile
+# Generate a Dockerfile
+# cd into the existing Function App project directory.
+cd starter
 func init --docker-only --python
 ###############################################################################################################
 
 ###############################################################################################################
 # Build the image using the Dockerfile 
 # docker build -t <name:tag> <path>
-docker build -t $imageName:$imageTag .
-###############################################################################################################
-
-###############################################################################################################
-# Build the image using the Dockerfile 
-# docker build -t <name:tag> <path>
-docker build -t $imageName:$imageTag .
+docker build -t $imageName:$imageTag
 ###############################################################################################################
 
 ###############################################################################################################
@@ -28,14 +23,13 @@ docker run -p 7071:7071 -it $imageName:$imageTag
 
 ###############################################################################################################
 # Create a repository in ACR service
-# Run : commands\ContainerRegistry\ACR_create.ps1
+# Run : az acr create --resource-group $resourceGroup --name $containerRegistry --sku Basic
 ###############################################################################################################
 
 ###############################################################################################################
 # List the local images
 docker images
 # Tag the image with the same name as the ACR respository, else, the push will fail.
-# SYNTAX 
 # docker tag <name:tag> <ACR-respository>.azurecr.io/<name:tag>
 docker tag $imageName:$imageTag $containerRegistry.azurecr.io/$imageName:$imageTag
 ###############################################################################################################

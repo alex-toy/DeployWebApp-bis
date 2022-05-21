@@ -1,1 +1,4 @@
 .venv
+/starter/.dockerignore
+/starter/Dockerfile
+/commands/ContainerRegistry/aks_credentials.json

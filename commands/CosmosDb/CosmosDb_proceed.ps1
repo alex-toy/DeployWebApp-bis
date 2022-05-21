@@ -11,7 +11,6 @@ az cosmosdb mongodb database create `
 ################################################################
 "GET KEYS : "
 
-# Get IP address
 $file = '.\commands\CosmosDb\keys.json'
 az cosmosdb keys list `
     --name $CDBDatabaseAccount `

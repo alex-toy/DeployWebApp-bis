@@ -1,8 +1,24 @@
-################################################################
+"###############################################################"
 "Now running : " + $MyInvocation.MyCommand.Path
+"###############################################################"
+
 
 ################################################################
-#CREATE AND DEPLOY AN APP SERVICE :
+"Web App :"
+
+$Global:WAName = "alexeiwa"
+"Web app name : " + $WAName
+
+$Global:WALocation = $RGLocation
+"Web App location : " + $WALocation
+
+$Global:SKU = "F1"
+"SKU : " + $SKU
+
+
+
+################################################################
+"CREATE AND DEPLOY AN APP SERVICE :"
 
 #cd to web directory
 $init_path = $pwd

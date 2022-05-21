@@ -1,5 +1,56 @@
+"###############################################################"
+"Now running : " + $MyInvocation.MyCommand.Path
+"###############################################################"
+
+
 ################################################################
-#CREATE SQL SERVER :
+"SQL database configuration :"
+
+$Global:SQLAdminUser = "alexadmin"
+"SQL admin user : "  + $SQLAdminUser
+
+$Global:SQLAdminPassword = "p@ssword1234"
+"SQL Admin password : " + $SQLAdminPassword
+
+$Global:SQLServerName = "flask-sql-server"
+"SQL server name : " + $SQLServerName
+
+$Global:SQLLocation = "francecentral"
+"SQL Location : " + $SQLLocation
+
+$Global:SQLEnablePublicNetwork = "true"
+"SQL enable public network : " + $SQLEnablePublicNetwork
+
+$Global:SQLBDName = "flask-db"
+"DB name : " + $SQLBDName
+
+$Global:FirewallRuleName = "azureaccess"
+"Firewall Rule Name : " + $FirewallRuleName
+
+$Global:ClientIPFirewallRuleName = "clientip"
+"ClientIP Firewall Rule Name : " + $ClientIPFirewallRuleName
+
+$Global:Tier = "Basic"
+"Tier : " + $Tier
+
+
+
+#######################################################################
+"Set config file :"
+
+$file = ".\commands\Configs\var.cfg"
+
+(Get-Content -Path $file) | ForEach-Object { $_ = $_.split("=")[0]; $_ } | Set-Content -Path $file
+
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_SERVER=' + $SQLServerName; $_ -Replace 'SQL_SERVER', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_DATABASE=' + $SQLBDName; $_ -Replace 'SQL_DATABASE', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_USER_NAME=' + $SQLAdminUser; $_ -Replace 'SQL_USER_NAME', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_PASSWORD=' + $SQLAdminPassword; $_ -Replace 'SQL_PASSWORD', $rep } | Set-Content -Path $file
+
+
+
+################################################################
+"CREATE SQL SERVER :"
 
 az sql server create `
     --admin-user $SQLAdminUser `
@@ -12,7 +63,7 @@ az sql server create `
 
 
 ################################################################
-#CREATE FIREWALL RULES :
+"CREATE FIREWALL RULES :"
 
 #allow Allow Azure services and resources to access the server we just created.
 az sql server firewall-rule create `
@@ -25,14 +76,14 @@ az sql server firewall-rule create `
 
 
 ################################################################
-#RETRIEVE LOCAL IP ADDRESS :
+"RETRIEVE LOCAL IP ADDRESS :"
 
 $Global:LocalPublicIP = (Invoke-WebRequest ifconfig.me/ip).Content.Trim()
 "Local Public IP : " + $LocalPublicIP
 
 
 ################################################################
-#LAST SETTINGS :
+"LAST SETTINGS :"
 
 #set your computer's public Ip address to the server's firewall
 az sql server firewall-rule create `

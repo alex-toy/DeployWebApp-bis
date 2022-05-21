@@ -1,5 +1,10 @@
-# $result = az group list | ConvertFrom-Json
-# $result.location
+$tag = "mytag2"
+$image = "myimage2"
+# $test = "mytag2:myimage2"
+# docker tag ${DockerImageName}:${DockerImageTag} ${CRName}.azurecr.io/${image}:$tag
+docker tag ${DockerImageName}:${DockerImageTag} ${CRName}${container}${image}:${tag}
+# docker tag ${DockerImageName}:${DockerImageTag} ${CRName}.azurecr.io/${test}
 
-$resources = az resource list | ConvertFrom-Json
-$resources | Foreach-Object { $_.resourceGroup }
+
+$container = ".azurecr.io/"
+docker tag ${DockerImageName}:${DockerImageTag} ${CRName}${container}${DockerImageName}:${DockerImageTag}
