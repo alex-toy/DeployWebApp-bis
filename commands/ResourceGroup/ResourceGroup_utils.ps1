@@ -7,4 +7,8 @@ az account list-locations -o table
 ################################################################
 #LIST OF ALL LOCATIONS :
 
-az resource list --location $MyLocation
+az resource list --location $RGLocation
+
+
+
+az group list 

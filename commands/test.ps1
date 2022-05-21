@@ -1,12 +1,5 @@
+# $result = az group list | ConvertFrom-Json
+# $result.location
 
-################################################################
-"CREATE A COSMOS COLLECTION :"
-
-$Global:CollectionName = "users"
-"Collection name : " + $CollectionName
-
-az cosmosdb mongodb collection create `
-    --resource-group $RGName `
-    --account-name $CDBDatabaseAccount `
-    --database-name $CDBName `
-    --name $CollectionName
+$resources = az resource list | ConvertFrom-Json
+$resources | Foreach-Object { $_.resourceGroup }

@@ -68,4 +68,5 @@ func start [-p 7071]
 ###############################################################################################################
 # Re-publish - After making the change, publish the function again.
 func azure functionapp publish <function app name>
+func azure functionapp publish alexeifa
 ###############################################################################################################

@@ -1,0 +1,54 @@
+###############################################################################################################
+# Run from within the existing Function App project directory.
+# Creates a Dockerfile
+func init --docker-only --python
+###############################################################################################################
+
+###############################################################################################################
+# Build the image using the Dockerfile 
+# docker build -t <name:tag> <path>
+docker build -t $imageName:$imageTag .
+###############################################################################################################
+
+###############################################################################################################
+# Build the image using the Dockerfile 
+# docker build -t <name:tag> <path>
+docker build -t $imageName:$imageTag .
+###############################################################################################################
+
+###############################################################################################################
+# Test the application
+docker run -p 7071:7071 -it $imageName:$imageTag
+###############################################################################################################
+
+###############################################################################################################
+# Create a Container Registry Respository and Push the Image
+docker run -p 7071:7071 -it $imageName:$imageTag
+###############################################################################################################
+
+###############################################################################################################
+# Create a repository in ACR service
+# Run : commands\ContainerRegistry\ACR_create.ps1
+###############################################################################################################
+
+###############################################################################################################
+# List the local images
+docker images
+# Tag the image with the same name as the ACR respository, else, the push will fail.
+# SYNTAX 
+# docker tag <name:tag> <ACR-respository>.azurecr.io/<name:tag>
+docker tag $imageName:$imageTag $containerRegistry.azurecr.io/$imageName:$imageTag
+###############################################################################################################
+
+###############################################################################################################
+# Go to Container Registry >> Settings >> Access Keys and enable the Admin user. 
+# Use those credentials to login from your terminal. 
+docker login $containerRegistry.azurecr.io
+docker push $containerRegistry.azurecr.io/$imageName:$imageTag
+# View the newly pushed image in the ACR respository
+az acr repository list --name $containerRegistry --output table
+###############################################################################################################
+
+
+
+
