@@ -1,17 +1,12 @@
 
-$CDBDatabaseAccount = "alexeiaccount"
-$CDBName = "alexeicosmos"
-$CDBMaxThroughput = 4000
-$Throughput = 400
-
 ################################################################
-"CREATE A COSMOS DATABASE :"
+"CREATE A COSMOS COLLECTION :"
 
-az cosmosdb mongodb database create `
-    --account-name $CDBDatabaseAccount `
-    --name $CDBName `
+$Global:CollectionName = "users"
+"Collection name : " + $CollectionName
+
+az cosmosdb mongodb collection create `
     --resource-group $RGName `
-    --throughput $CDBThroughput
-
-
-
+    --account-name $CDBDatabaseAccount `
+    --database-name $CDBName `
+    --name $CollectionName

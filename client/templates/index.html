@@ -1,0 +1,17 @@
+<html>
+<body>
+ <div class="panel">
+     <h3 class="ml-2">Les beaux gosses de Dtek!!!!</h3>
+     {% for u in users %}
+     <div class="panel">
+         <div class="panel-boby">
+             <div class="panel-title">{{u.name}}</div>
+             <p class="text-muted">Description : {{ u.description }}</p>
+             <p class="text-muted">Age : {{ u.age }}</p>
+             <hr>
+         </div>
+
+      </div>
+     {% endfor %}       
+</body>
+</html>

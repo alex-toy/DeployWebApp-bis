@@ -6,7 +6,7 @@
 
 #cd to web directory
 $init_path = $pwd
-$app_path = ".\"
+$app_path = ".\client"
 Set-Location $app_path
 
 az webapp up `

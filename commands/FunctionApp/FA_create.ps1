@@ -44,8 +44,8 @@ az functionapp keys set `
 #######################################################################
 # Next step :
 
-# $script = "commands\StorageAccount\StorageAccount_create.ps1"
-# .$script
+$script = "commands\WebApp\WebApp_create.ps1"
+.$script
 
 
 
