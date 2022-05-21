@@ -1,0 +1,71 @@
+
+###############################################################################################################
+Bindings: Edit the function.json file for each function endpoint to include the connection details:
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get"
+      ],
+      "connection":"MyDbConnection" ### TO BE ADDED #########################""
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ]
+}
+###############################################################################################################
+
+###############################################################################################################
+Ensure that the current local.settings.json file contains all settings from the Functions App >> Settings >> Configuration 
+in the portal:
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "FUNCTIONS_EXTENSION_VERSION": "~4",
+    "MyDbConnection": "mongodb://user188239cosmosdb:c6KTOzUA==@use&replicaSet=0000&appName=@user188239cosmosdb@",
+    "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "DefaultEndpointsProtocol=https;AccountName=usefix=core.windows.net",
+    "WEBSITE_CONTENTSHARE":"user188239functionappb01b82"
+  }
+}
+###############################################################################################################
+
+
+###############################################################################################################
+cd /path/to/web
+
+python3 -m venv .venv
+
+source venv/bin/activate #mac
+.\.venv\Scripts\activate #windows
+.\venv\Scripts\deactivate #windows
+
+pip install --upgrade pip 
+python3 -m pip install -r requirements.txt
+
+
+# Create a virtual environment in the local
+pip install pipenv==2022.1.8
+# Install packages into the pipenv virtual environment and generates the Pipfile.lock with a specific set of the packages
+pipenv install --python 3.8
+# Activate the new virtual environment
+pipenv shell
+# Start the function. Port is optional to mention
+func start [-p 7071]
+###############################################################################################################
+
+
+
+###############################################################################################################
+# Re-publish - After making the change, publish the function again.
+func azure functionapp publish <function app name>
+###############################################################################################################
